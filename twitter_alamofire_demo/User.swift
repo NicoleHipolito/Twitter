@@ -13,6 +13,7 @@ class User {
 //    static var current: User?
     var name: String
     var screenName: String?
+    var profilePic : String
     
     // For user persistance
     var dictionary: [String: Any]?
@@ -22,6 +23,7 @@ class User {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as? String
+        profilePic = (dictionary["profile_image_url_https"] as? String)!
     }
     
     static var current: User? {

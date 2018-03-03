@@ -27,7 +27,12 @@ class TweetCell: UITableViewCell {
             tweetTextLabel.text = tweet.text
             NameLabel.text = tweet.user.name
             screenName.text = ("@" + tweet.user.screenName!)  as String?
-//            profilePic.image =
+            profilePic.af_setImage(withURL: URL(string: tweet.user.profilePic)!)
+            profilePic.layer.borderWidth = 1
+            profilePic.layer.masksToBounds = false
+            profilePic.layer.borderColor = UIColor.clear.cgColor
+            profilePic.layer.cornerRadius = profilePic.frame.height/2
+            profilePic.clipsToBounds = true
 //            replyCount.text =
             retweetCount.text = String(tweet.retweetCount)
             if(tweet.favoriteCount != nil){

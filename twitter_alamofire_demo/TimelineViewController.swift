@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
