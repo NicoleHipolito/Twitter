@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -151,12 +150,6 @@
                                                         <constraint firstAttribute="width" constant="28" id="QBl-6V-4gM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.9k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brn-xG-TRG">
-                                                    <rect key="frame" x="45" y="113" width="25" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12.5"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.6k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nK-g5-GqF">
                                                     <rect key="frame" x="106" y="112" width="25" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12.5"/>
@@ -177,10 +170,7 @@
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Htz-GC-9GY" secondAttribute="trailing" constant="8" id="1Qn-9C-nTY"/>
                                                 <constraint firstItem="ota-rN-d9I" firstAttribute="top" secondItem="l7H-Ve-gNW" secondAttribute="top" id="1hy-ms-zPf"/>
                                                 <constraint firstItem="3nK-g5-GqF" firstAttribute="centerY" secondItem="xv1-pG-38e" secondAttribute="centerY" constant="-1" id="1k0-nd-McK"/>
-                                                <constraint firstItem="brn-xG-TRG" firstAttribute="leading" secondItem="xv1-pG-38e" secondAttribute="trailing" constant="2" id="4P1-8d-QDl"/>
-                                                <constraint firstItem="d7B-Od-E8p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="brn-xG-TRG" secondAttribute="trailing" constant="8" id="5M1-Po-2Fw"/>
                                                 <constraint firstItem="Xav-68-sI8" firstAttribute="baseline" secondItem="3nK-g5-GqF" secondAttribute="baseline" constant="1" id="7Mu-IB-v1x"/>
-                                                <constraint firstItem="brn-xG-TRG" firstAttribute="centerY" secondItem="xv1-pG-38e" secondAttribute="centerY" id="8o8-J7-icP"/>
                                                 <constraint firstItem="ota-rN-d9I" firstAttribute="leading" secondItem="l7H-Ve-gNW" secondAttribute="trailing" constant="8" id="CJ7-Xu-7Ut"/>
                                                 <constraint firstItem="l7H-Ve-gNW" firstAttribute="leading" secondItem="zd2-Er-659" secondAttribute="leadingMargin" constant="8" id="EB8-F4-kCp"/>
                                                 <constraint firstItem="3nK-g5-GqF" firstAttribute="leading" secondItem="d7B-Od-E8p" secondAttribute="trailing" constant="2" id="EiN-y2-D6a"/>
@@ -199,7 +189,6 @@
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Htz-GC-9GY" secondAttribute="bottom" constant="15" id="bJb-75-h9r"/>
                                                 <constraint firstItem="l7H-Ve-gNW" firstAttribute="top" secondItem="zd2-Er-659" secondAttribute="topMargin" constant="8" id="bT6-CL-Nk2"/>
                                                 <constraint firstItem="jz9-ow-f6S" firstAttribute="leading" secondItem="3nK-g5-GqF" secondAttribute="trailing" constant="18" id="ifj-gd-F7J"/>
-                                                <constraint firstItem="Xav-68-sI8" firstAttribute="baseline" secondItem="brn-xG-TRG" secondAttribute="firstBaseline" id="joA-9f-uKP"/>
                                                 <constraint firstItem="mOS-xX-cRi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ota-rN-d9I" secondAttribute="trailing" constant="8" id="mVG-mX-dZG"/>
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="leading" secondItem="zd2-Er-659" secondAttribute="leadingMargin" constant="8" id="nP9-AN-EjQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Xav-68-sI8" secondAttribute="bottom" constant="11" id="nlH-n7-5p2"/>
@@ -215,7 +204,6 @@
                                             <outlet property="favoritedCount" destination="Xav-68-sI8" id="CDH-eS-HHD"/>
                                             <outlet property="profilePic" destination="l7H-Ve-gNW" id="ojX-p0-krV"/>
                                             <outlet property="replyButton" destination="xv1-pG-38e" id="qpE-Fs-0dh"/>
-                                            <outlet property="replyCount" destination="brn-xG-TRG" id="3Qv-QO-hgs"/>
                                             <outlet property="retweetCount" destination="3nK-g5-GqF" id="TPr-2a-xpy"/>
                                             <outlet property="rtButton" destination="d7B-Od-E8p" id="lfy-Lg-G4q"/>
                                             <outlet property="screenName" destination="Htz-GC-9GY" id="zDx-E8-YsH"/>

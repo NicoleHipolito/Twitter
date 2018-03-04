@@ -14,7 +14,6 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var screenName: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var replyCount: UILabel!
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoritedCount: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -24,16 +23,21 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            profilePic.af_setImage(withURL: URL(string: tweet.user.profilePic)!)
+            profilePic.layer.borderWidth = 1
+            profilePic.layer.borderColor = UIColor.clear.cgColor
+            profilePic.layer.masksToBounds = false
+            profilePic.layer.cornerRadius = profilePic.frame.height/2
+            profilePic.clipsToBounds = true
+            if(tweet.favorited == true){
+                favButton.setImage(UIImage(named: "favor-icon-red"), for: [])
+            }
+            else{
+                favButton.setImage(UIImage(named: "favor-icon.png"), for: [])
+            }
             tweetTextLabel.text = tweet.text
             NameLabel.text = tweet.user.name
             screenName.text = ("@" + tweet.user.screenName!)  as String?
-            profilePic.af_setImage(withURL: URL(string: tweet.user.profilePic)!)
-            profilePic.layer.borderWidth = 1
-            profilePic.layer.masksToBounds = false
-            profilePic.layer.borderColor = UIColor.clear.cgColor
-            profilePic.layer.cornerRadius = profilePic.frame.height/2
-            profilePic.clipsToBounds = true
-//            replyCount.text =
             retweetCount.text = String(tweet.retweetCount)
             if(tweet.favoriteCount != nil){
                 let fc = tweet.favoriteCount!
@@ -42,30 +46,67 @@ class TweetCell: UITableViewCell {
             else{
                 favoritedCount.text = ""
             }
+            if(tweet.retweeted == true){
+                rtButton.setImage(UIImage(named: "retweet-icon-green.png"), for: [])
+            }
+            else{
+                rtButton.setImage(UIImage(named: "retweet-icon.png"), for: [])
+            }
             dateLabel.text = tweet.createdAtString
-//             MARK: Properties
-//            var id: Int64 // For favoriting, retweeting & replying
-//            var text: String // Text content of tweet
-//            var favoriteCount: Int? // Update favorite count label
-//            var favorited: Bool? // Configure favorite button
-//            var retweetCount: Int // Update favorite count label
-//            var retweeted: Bool // Configure retweet button
-//            var user: User // Contains name, screenname, etc. of tweet author
-//            var createdAtString: String // Display date
-//
+
         }
     }
     
     @IBAction func replyButtonTapped(_ sender: Any) {
     }
     @IBAction func retweetButtonTapped(_ sender: Any) {
-        if(tweet.favorited == true){
-            tweet.favorited = false
-            
+        print(tweet.retweeted)
+        if(tweet.retweeted == true){
+            tweet.retweeted = false
+            tweet.retweetCount -= 1
+            retweetCount.text = String(tweet.retweetCount)
+            print(tweet.retweetCount)
+            rtButton.setImage(UIImage(named: "retweet-icon.png"), for: [])
+        }
+        else{
+            tweet.retweeted = true
+            tweet.retweetCount += 1
+            retweetCount.text = String(tweet.retweetCount)
+            print(tweet.retweetCount)
+            rtButton.setImage(UIImage(named: "retweet-icon-green.png"), for: [])
         }
     }
     @IBAction func favoritedButtonTapped(_ sender: Any) {
-        
+        // TODO: Update the local tweet model
+        // TODO: Update cell UI
+        print(tweet.favorited)
+        if(tweet.favorited == true){
+            tweet.favorited = false
+            tweet.favoriteCount! -= 1
+            print(tweet.favoriteCount)
+            favButton.setImage(UIImage(named: "favor-icon.png"), for: [])
+        }
+        else{
+            tweet.favorited = true
+            tweet.favoriteCount! += 1
+            print(tweet.favoriteCount)
+            favButton.setImage(UIImage(named: "favor-icon-red"), for: [])
+        }
+        if(tweet.favoriteCount != nil){
+            let fc = tweet.favoriteCount!
+            favoritedCount.text = String(fc)
+        }
+        else{
+            favoritedCount.text = ""
+        }
+        // TODO: Send a POST request to the POST favorites/create endpoint
+        APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+            if let  error = error {
+                print("Error favoriting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+            }
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
