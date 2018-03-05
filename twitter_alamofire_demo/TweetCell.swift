@@ -67,6 +67,13 @@ class TweetCell: UITableViewCell {
             retweetCount.text = String(tweet.retweetCount)
             print(tweet.retweetCount)
             rtButton.setImage(UIImage(named: "retweet-icon.png"), for: [])
+            APIManager.shared.unretweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error unretweet tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unretweet the following Tweet: \n\(tweet.text)")
+                }
+            }
         }
         else{
             tweet.retweeted = true
@@ -74,6 +81,13 @@ class TweetCell: UITableViewCell {
             retweetCount.text = String(tweet.retweetCount)
             print(tweet.retweetCount)
             rtButton.setImage(UIImage(named: "retweet-icon-green.png"), for: [])
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error retweet tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully retweet the following Tweet: \n\(tweet.text)")
+                }
+            }
         }
     }
     @IBAction func favoritedButtonTapped(_ sender: Any) {
@@ -81,16 +95,32 @@ class TweetCell: UITableViewCell {
         // TODO: Update cell UI
         print(tweet.favorited)
         if(tweet.favorited == true){
+            print("Inside unfavoriting")
             tweet.favorited = false
             tweet.favoriteCount! -= 1
             print(tweet.favoriteCount)
+            APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                }
+            }
             favButton.setImage(UIImage(named: "favor-icon.png"), for: [])
         }
         else{
+            print("Inside favoriting")
             tweet.favorited = true
             tweet.favoriteCount! += 1
             print(tweet.favoriteCount)
             favButton.setImage(UIImage(named: "favor-icon-red"), for: [])
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
         }
         if(tweet.favoriteCount != nil){
             let fc = tweet.favoriteCount!
@@ -100,13 +130,6 @@ class TweetCell: UITableViewCell {
             favoritedCount.text = ""
         }
         // TODO: Send a POST request to the POST favorites/create endpoint
-        APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
-            if let  error = error {
-                print("Error favoriting tweet: \(error.localizedDescription)")
-            } else if let tweet = tweet {
-                print("Successfully favorited the following Tweet: \n\(tweet.text)")
-            }
-        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
