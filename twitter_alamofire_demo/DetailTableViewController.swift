@@ -142,11 +142,13 @@ class DetailTableViewController: UITableViewController {
         if(tweet.favoriteCount != nil){
             let fc = tweet.favoriteCount!
             var favStr = String(fc)
+            print(fc/1000)
             if(fc/1000 >= 1 ){
                 let favDec = String(fc/1000)
                 let index = favDec.index(favDec.startIndex, offsetBy: 2)
                 let FinalSubstr = favDec[..<index]
                 favStr = FinalSubstr+"k"
+                print(favStr)
             }
             favoriteCount.text = favStr
         }

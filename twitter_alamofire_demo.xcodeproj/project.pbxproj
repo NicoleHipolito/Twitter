@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2810663420562EEA0003E50D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2810663320562EEA0003E50D /* ProfileViewController.swift */; };
 		28D5C4E9205111370009619C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D5C4E8205111370009619C /* DetailViewController.swift */; };
 		28D5C4EB20511F800009619C /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D5C4EA20511F800009619C /* DetailTableViewController.swift */; };
 		28D5C4ED205215DF0009619C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D5C4EC205215DF0009619C /* ComposeViewController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		001F2EB27736B82E6AF0082B /* Pods_twitter_alamofire_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twitter_alamofire_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2810663320562EEA0003E50D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		28D5C4E8205111370009619C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		28D5C4EA20511F800009619C /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		28D5C4EC205215DF0009619C /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				28D5C4E8205111370009619C /* DetailViewController.swift */,
 				ED1AFD601E94496E00FD4B90 /* LoginViewController.swift */,
 				ED1D234B1EF6E42900C51ACC /* TimelineViewController.swift */,
+				2810663320562EEA0003E50D /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				28D5C4EB20511F800009619C /* DetailTableViewController.swift in Sources */,
 				ED1AFD611E94496E00FD4B90 /* LoginViewController.swift in Sources */,
 				28D5C4ED205215DF0009619C /* ComposeViewController.swift in Sources */,
+				2810663420562EEA0003E50D /* ProfileViewController.swift in Sources */,
 				ED1AFD5F1E94421000FD4B90 /* APIManager.swift in Sources */,
 				ED1AFD311E942B2500FD4B90 /* AppDelegate.swift in Sources */,
 				ED1D234C1EF6E42900C51ACC /* TimelineViewController.swift in Sources */,

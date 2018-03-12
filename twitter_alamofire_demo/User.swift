@@ -14,9 +14,14 @@ class User {
     var name: String
     var screenName: String?
     var profilePic : String
-    
+    var backgroundPic : String
+    var followersCount: Int
+    var followingCount: Int
+    var tweetsCount: Int
+    var description: String
     // For user persistance
     var dictionary: [String: Any]?
+    
     private static var _current: User?
     
     init(dictionary: [String: Any]) {
@@ -24,6 +29,15 @@ class User {
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as? String
         profilePic = (dictionary["profile_image_url_https"] as? String)!
+        if dictionary["profile_banner_url"] != nil  {
+            backgroundPic = (dictionary["profile_banner_url"] as! String)
+        }else{
+            backgroundPic = "nil"
+        }
+        followersCount = dictionary["followers_count"] as! Int
+        followingCount = dictionary["friends_count"] as! Int
+        tweetsCount = dictionary["statuses_count"] as! Int
+        description = dictionary["description"] as! String
     }
     
     static var current: User? {
