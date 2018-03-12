@@ -11,6 +11,8 @@ target 'twitter_alamofire_demo' do
   pod 'OAuthSwiftAlamofire'
   pod 'KeychainAccess'
   pod 'TTTAttributedLabel'
+#  pod 'RSKPlaceholderTextView'
+  pod 'UITextView+Placeholder', '~> 1.2'
   pod 'AlamofireImage'
   
   target 'twitter_alamofire_demoTests' do

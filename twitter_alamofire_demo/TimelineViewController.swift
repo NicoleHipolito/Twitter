@@ -9,15 +9,17 @@
 import UIKit
 import AlamofireImage
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var composeButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        composeButton.backButtonBackgroundImage(for: [], barMetrics:)
         // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshControlAction(_:)), for: UIControlEvents.valueChanged)
@@ -27,7 +29,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 44
         getTweets()
         
     }
@@ -62,16 +64,35 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    @IBAction func composeButtonTapped(_ sender: Any) {
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     @IBAction func didTapLogout(_ sender: Any) {
         APIManager.shared.logout()
     }
     
+    func did(post: Tweet) {
+        tweets.insert(post, at: 0)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "detailSegue"){
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell){
+                let tweet = tweets[indexPath.row]
+                let detailTableViewController = segue.destination as! DetailTableViewController
+                detailTableViewController.tweet = tweet
+            }
+        }
+        else if(segue.identifier == "tweetSegue"){
+            print("Tweet Segue")
+        }
+    }
     
     /*
      // MARK: - Navigation

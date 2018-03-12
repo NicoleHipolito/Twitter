@@ -114,7 +114,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+A huge challenge for me was creating a static table view. It wouldn't let me do it in the same view controller because it said I had to embed it. After going through many answers, I was able to find the solution to my problem but I wasn't able to fix the positioning of the cells in my table view.
 
 ## License
 

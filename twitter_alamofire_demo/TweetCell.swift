@@ -30,7 +30,7 @@ class TweetCell: UITableViewCell {
             profilePic.layer.cornerRadius = profilePic.frame.height/2
             profilePic.clipsToBounds = true
             if(tweet.favorited == true){
-                favButton.setImage(UIImage(named: "favor-icon-red"), for: [])
+                favButton.setImage(UIImage(named: "favor-icon-red.png"), for: [])
             }
             else{
                 favButton.setImage(UIImage(named: "favor-icon.png"), for: [])
