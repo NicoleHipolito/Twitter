@@ -55,6 +55,7 @@ class DetailTableViewController: UITableViewController {
             retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: [])
         }
         dateLabel.text = tweet.createdAtString
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
@@ -73,12 +74,10 @@ class DetailTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 3
     }
 
@@ -118,7 +117,6 @@ class DetailTableViewController: UITableViewController {
             print("Inside unfavoriting")
             tweet.favorited = false
             tweet.favoriteCount! -= 1
-            print(tweet.favoriteCount)
             APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
@@ -132,7 +130,6 @@ class DetailTableViewController: UITableViewController {
             print("Inside favoriting")
             tweet.favorited = true
             tweet.favoriteCount! += 1
-            print(tweet.favoriteCount)
             favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: [])
             APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
@@ -144,7 +141,14 @@ class DetailTableViewController: UITableViewController {
         }
         if(tweet.favoriteCount != nil){
             let fc = tweet.favoriteCount!
-            favoriteCount.text = String(fc)
+            var favStr = String(fc)
+            if(fc/1000 >= 1 ){
+                let favDec = String(fc/1000)
+                let index = favDec.index(favDec.startIndex, offsetBy: 2)
+                let FinalSubstr = favDec[..<index]
+                favStr = FinalSubstr+"k"
+            }
+            favoriteCount.text = favStr
         }
         else{
             favoriteCount.text = ""
